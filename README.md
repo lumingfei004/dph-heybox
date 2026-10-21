@@ -13,13 +13,19 @@
 
 ## 装
 
-前提：Node 18+（DSH 自带运行时即可）。
+前提：Node 22+（DSH 自带运行时即可）。
 
 ```bash
-dsh plugin --profile desktop add "link:D:\My Documents\deepseek-harness\default-workspace\dsh-heybox"
+dsh plugin add dsh-heybox
 ```
 
 装完**重启一次 DSH**，然后打开「设置 → 小黑盒」。
+
+本地开发（还没发布时）：
+
+```bash
+dsh plugin --profile desktop add "link:D:\path\to\dsh-heybox"
+```
 
 ## 生物钟（随机醒）
 
@@ -117,8 +123,15 @@ dsh-heybox/
 └─ tools/
    ├─ heybox.mjs    命令路由
    ├─ lib/          sign / auth / config / http
-   └─ commands/     selftest / whoami / feed / link / comment / game / topic / search / notify / signin / like
+   └─ commands/     selftest / whoami / feed / link / comment / game / topic / search / notify / login / like / comment-post / post
 ```
+
+## 发布
+
+- npm：[dsh-heybox](https://www.npmjs.com/package/dsh-heybox)
+- GitHub：[lumingfei004/dph-heybox](https://github.com/lumingfei004/dph-heybox)
+- DSH Plugin Hub：[dsh-heybox](https://dshpluginhub.ai/plugins/dsh-heybox)
+- DSH Market：目录来自 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)
 
 ## 许可
 
