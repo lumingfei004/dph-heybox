@@ -47,12 +47,32 @@ export async function pollQrLogin(token, sessionCookies = {}, client) {
   const result = data.result ?? {}
   const state = String(result.error ?? '')
   if (state === 'ok') {
+    // pkey 不一定只在 Set-Cookie 里：服务器也可能把它放进响应体（result.pkey / result.user_pkey）。
+    // 两种来源都收，少了任一处都会表现为「扫码成功但一直显示未登录」。
+    if (result.pkey) cookies.pkey = String(result.pkey)
+    if (result.user_pkey) cookies.user_pkey = String(result.user_pkey)
+
     const profile = result.profile ?? {}
     const detail = result.account_detail ?? {}
     const heyboxId = String(profile.heybox_id ?? detail.userid ?? result.heybox_id ?? '')
     const extra = heyboxId ? { heybox_id: heyboxId, user_heybox_id: heyboxId } : {}
     const merged = saveCookies({ ...cookies, ...extra })
-    return { state: 'ok', heyboxId, cookies: merged }
+
+    // 拿到 cookie 后立刻验证一次：没验证成功就告诉用户具体原因，而不是假装登录了
+    let verified = false
+    let verifyError = ''
+    try {
+      const check = new HeyboxClient({ cookies: merged, interval: 0 })
+      const r = await check.get('/account/restore_login')
+      const rr = r.result ?? {}
+      const id = String(rr.profile?.heybox_id ?? rr.heybox_id ?? rr.account_detail?.userid ?? '')
+      verified = Boolean(id)
+      if (!verified) verifyError = 'restore_login 没返回账号'
+    } catch (err) {
+      verifyError = String(err?.message ?? err)
+    }
+
+    return { state: 'ok', heyboxId, cookies: merged, verified, verifyError, hasPkey: Boolean(merged.pkey || merged.user_pkey) }
   }
   return { state: state || 'unknown', cookies }
 }

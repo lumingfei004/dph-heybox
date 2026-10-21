@@ -27,7 +27,8 @@ async function qrLogin() {
     try {
       const out = await pollQrLogin(token)
       if (out.state === 'ok') {
-        console.log(`✓ 登录成功 · heybox_id=${out.heyboxId || '（未返回）'}`)
+        if (out.verified) console.log(`✓ 登录成功 · heybox_id=${out.heyboxId || '（未返回）'}`)
+        else console.error(`⚠ 扫码完成，但登录校验失败：${out.verifyError || '未知原因'}`)
         return
       }
       if (out.state === 'ready') console.log('… 已扫码，请在 App 里确认')
