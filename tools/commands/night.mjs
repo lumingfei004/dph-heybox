@@ -44,7 +44,9 @@ const skipReasons = [
 
 try {
   const now = new Date()
-  const stamp = now.toISOString().slice(0, 16).replace('T', ' ')
+  // 日记用本地时间；toISOString 是 UTC，半夜醒来会写成「前一天 16:03」
+  const pad = (n) => String(n).padStart(2, '0')
+  const stamp = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`
 
   if (skip) {
     const reason = skipReasons[Math.floor(Math.random() * skipReasons.length)]
