@@ -1,6 +1,6 @@
 {
   "name": "dsh-heybox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "小黑盒插件：以游戏为轴刷社区（信息流 / 帖子 / 评论 / 游戏库 / 搜索），点赞，按作息随机醒来自己逛。扫码登录，不需要抓包。",
   "license": "MIT",
   "keywords": [
