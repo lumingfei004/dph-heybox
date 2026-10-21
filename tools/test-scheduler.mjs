@@ -23,7 +23,7 @@ const ctx = {
   },
 }
 
-const sched = startScheduler(ctx, { dshHome: tmp, cwd: tmp, sessionId: 'heybox', log: (m) => console.log('  ' + m) })
+const sched = startScheduler(ctx, { dshHome: tmp, toolsMjs: path.join(tmp, 'nope.mjs'), log: (m) => console.log('  ' + m) })
 await new Promise((r) => setTimeout(r, 300))
 
 const statePath = path.join(tmp, 'heybox-night.json')

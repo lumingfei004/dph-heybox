@@ -18,6 +18,7 @@ const map = {
   topic: ['commands/topic.mjs', '话题搜索：<关键词> [--offset N] [--limit N] [--json]'],
   search: ['commands/search.mjs', '搜索帖子：<关键词> [--json]'],
   notify: ['commands/notify.mjs', '谁找过你（通知） [--type 0|1|2|3] [--json]'],
+  night: ['commands/night.mjs', '自主逛一圈（生物钟调用）：拉信息流 → 挑帖 → 点赞 → 写日记'],
   // —— 写（会真的发出去；必须 --go，默认只预演） ——
   login: ['commands/login.mjs', '写入登录 cookie：login "pkey=…; heybox_id=…" 或直接 login 后粘贴'],
   like: ['commands/like.mjs', '点赞 / 取消点赞：<link_id> [--undo] --go'],
