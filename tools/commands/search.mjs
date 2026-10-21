@@ -10,7 +10,7 @@ const flag = (name, def) => {
 const json = argv.includes('--json')
 const query = argv.find((a) => a && !a.startsWith('--') && a !== flag('--offset', '') && a !== flag('--limit', ''))
 const offset = Number(flag('--offset', 0))
-const limit = Number(flag('--limit', 20))
+const limit = Math.max(3, Number(flag('--limit', 20)) || 20)   // 接口对 limit<3 返回空
 
 if (!query) {
   console.error('用法: node heybox.mjs search <关键词> [--json]')

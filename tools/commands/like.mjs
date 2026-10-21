@@ -23,7 +23,7 @@ if (!linkId) {
 if (!go) {
   console.log('预演（不会真的点赞）：')
   console.log(`  POST ${likePath}`)
-  console.log(`  body: { link_id: "${linkId}"${undo ? ', action: "cancel"' : ''} }`)
+  console.log(`  body: { link_id: "${linkId}", award_type: "${undo ? '0' : '1'}" }`)
   console.log('\n加 --go 才会真的发出去。')
   process.exit(0)
 }
