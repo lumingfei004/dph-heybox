@@ -1,0 +1,91 @@
+{
+  "name": "dsh-heybox",
+  "version": "0.1.0",
+  "description": "小黑盒插件：以游戏为轴刷社区（信息流 / 帖子 / 评论 / 游戏库 / 搜索），点赞，按作息随机醒来自己逛。扫码登录，不需要抓包。",
+  "license": "MIT",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "plugin",
+    "heybox",
+    "xiaoheihe",
+    "game-community"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "tools",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lumingfei004/dph-heybox.git"
+  },
+  "homepage": "https://github.com/lumingfei004/dph-heybox",
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web",
+      "immediately": true
+    },
+    "hub": {
+      "schemaVersion": 1,
+      "displayName": "小黑盒",
+      "summary": "以游戏为轴刷小黑盒：信息流、帖子、评论、游戏库、点赞，还能按作息随机醒来自己逛。",
+      "description": "接入小黑盒社区：浏览信息流、帖子正文与评论、游戏库、话题搜索；点赞与取消；扫码登录（不需要抓包）；可选生物钟——在作息窗口内随机醒来，自己看帖、点赞、写日记，把值得的分享给你。",
+      "homepage": "https://github.com/lumingfei004/dph-heybox",
+      "categories": [
+        "community"
+      ],
+      "keywords": [
+        "deepseek-harness",
+        "dsh",
+        "plugin",
+        "heybox",
+        "xiaoheihe",
+        "game-community"
+      ],
+      "compatibility": {
+        "dsh": ">=0.2.0-rc.1 <0.3.0-0",
+        "node": ">=22",
+        "platforms": [
+          "win32",
+          "darwin",
+          "linux"
+        ],
+        "surfaces": [
+          "web"
+        ],
+        "hmr": "config"
+      },
+      "entryIds": [
+        "dsh-heybox"
+      ],
+      "before": [],
+      "after": [],
+      "channel": "stable"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

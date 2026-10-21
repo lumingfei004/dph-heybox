@@ -1,0 +1,8 @@
+# dsh-heybox —— DSH bundle patch
+#
+# 插件挂载声明：DSH 启动时把本插件插进 profile 的配置树。
+# `name:` 必须与安装后的包名完全一致（dsh-heybox），否则设置页 404。
+
+- insert:
+    - id: dsh-heybox
+      name: dsh-heybox
