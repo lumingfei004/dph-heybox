@@ -109,6 +109,7 @@ node tools/test-client.mjs              # 离线自测设置页模块
 ## 已知限制
 
 - 签到已取消：小黑盒签到只认 App 签名，web 通道不可用
+- **评论/发帖需要浏览器会话 token**：接口要求 `x_xhh_tokenid`（扫码登录只给 pkey）。浏览器登录小黑盒后 F12 → Network → 任意请求 → 复制完整 Cookie，存到 `~/.heybox-ai/cookie.txt` 即可
 - 发帖 / 评论发布的图片上传尚未实现
 
 ## 目录

@@ -84,6 +84,7 @@ export function signParams(path, { timestamp, nonce, workshop = false } = {}) {
   const t = timestamp ?? Math.floor(Date.now() / 1000)
   const n = nonce ?? makeNonce(t)
   const out = { hkey: hkey(path, t, n), _time: t, nonce: n }
-  if (workshop) out._rnd = rndSignature(n, `${t}:${n}`)
+  // 注意：rndSignature 内部自己会拼 `${time}:${nonce}`，这里只传纯时间戳
+  if (workshop) out._rnd = rndSignature(n, t)
   return out
 }

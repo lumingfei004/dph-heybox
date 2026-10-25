@@ -50,5 +50,10 @@ try {
   console.log(`  帖子：https://www.xiaoheihe.cn/app/bbs/link/${linkId}`)
 } catch (err) {
   console.error(`✗ ${err.message}`)
+  if (String(err.message).includes('评论功能暂不可用')) {
+    console.error('\n提示：评论接口需要浏览器会话 token（x_xhh_tokenid），扫码登录只给 pkey。')
+    console.error('做法：浏览器登录小黑盒 → F12 → Network → 任意请求 → 复制完整 Cookie，')
+    console.error('存到 ~/.heybox-ai/cookie.txt（一行，形如 "a=b; c=d"）。')
+  }
   process.exitCode = 1
 }
